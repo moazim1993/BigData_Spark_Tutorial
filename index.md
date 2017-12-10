@@ -1,12 +1,13 @@
+
 # What is Apache Spark
 
 ## History
-Apache Spark was first developed in 2009 by AMPLab at UC Berkeley. It was first released at May 30th 2014(only 3 years ago) and later donated to the Apache Software Foundation which has maintained it ever since. 
+Apache Spark was first developed in 2009 by AMPLab at UC Berkeley. It was first released at May 30th 2014 (only 3 years ago) and later donated to the Apache Software Foundation which has maintained it ever since. 
 
 ## Functionalities
-It is an open-source, fault-tolerent batch-computing framework similar to Hadoop(We will talk about the difference in next section). It provides us several APIs to manipulate a special kind of datasets(so-called RDD) distributed on many machines in high level and hide away the low-level details to keep operations efficient and fault-tolerent under the hood.
+It is an open-source, fault-tolerent batch-computing framework similar to Hadoop. It provides us several APIs to manipulate a special kind of datasets(so-called RDD) distributed on many machines in high level and hide away the low-level details to keep operations efficient and fault-tolerent under the hood.
 
-![Spark Framework](images/SparkFramework.png)
+![Spark Framework](SparkFramework.png)
 
 There 1 main component in Spark served as foundation:
 
@@ -33,6 +34,7 @@ Built on top of the Spark Core, Spark provide 4 higher-level libraries for speci
 
 - **GraphX**
   GraphX is used for graph processing like PageRank and so on.
+---
 
 # What is special about Spark
 All we do with data can be generalized as applying some operations on some dataset. Spark is designed in this way too.
@@ -40,7 +42,7 @@ All we do with data can be generalized as applying some operations on some datas
 ## RDD
 The special kind of datasets in Spark--**Resilient Distributed Datasets(RDDs)**--form the foundation of Spark. Basically, an RDD is a collections of tuples. What is special about RDD is that your can keep it in memories of machines by using ``persist()`` or ``cache()`` method. On addition to that, you can specify the storage level to control how it is saved. 
 
-By default, Spark saves the RDD as deserialized Java objects in memory. And if the RDD is too big, the part that doesn't fit will not be cached and will be recompute on the fly every time they are needed. (For the full set of storage levels and their details, check -> https://spark.apache.org/docs/latest/rdd-programming-guide.html#rdd-persistence)
+By default, Spark saves the RDD as deserialized Java objects in memory. And if the RDD is too big, the part that doesn't fit will not be cached and will be recompute on the fly every time they are needed. (For the full set of storage levels and their details, check [here.](https://spark.apache.org/docs/latest/rdd-programming-guide.html#rdd-persistence))
 
 This is the key difference between Spark and Hadoop. Because as we know, Hadoop don't save any output in memory, even the intermediate key/value pairs coming out of map function are saved to local disk and being retrieved by reducer. The disk I/Os and serialization/deserialization during I/O make the process very inefficient if we need to use the same dataset from time to time. (Think about tuning models in Machine Learning.) **In contrast, the RDDs used in Spark can stay in memory thus allows up to use them iteratively and interactively over and over again without having to read them from disk. **
 
