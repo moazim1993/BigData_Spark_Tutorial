@@ -1,37 +1,250 @@
-## Welcome to GitHub Pages
+# What is Apache Spark
 
-You can use the [editor on GitHub](https://github.com/moazim1993/BigData_Spark_Tutorial/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+## History
+Apache Spark was first developed in 2009 by AMPLab at UC Berkeley. It was first released at May 30th 2014(only 3 years ago) and later donated to the Apache Software Foundation which has maintained it ever since. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Functionalities
+It is an open-source, fault-tolerent batch-computing framework similar to Hadoop(We will talk about the difference in next section). It provides us several APIs to manipulate a special kind of datasets(so-called RDD) distributed on many machines in high level and hide away the low-level details to keep operations efficient and fault-tolerent under the hood.
 
-### Markdown
+![Spark Framework](images/SparkFramework.png)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+There 1 main component in Spark served as foundation:
 
-```markdown
-Syntax highlighted code block
+- **Spark Core**
+  Spark Core provides foundational functionalities like distributed task dispatching, scheduling, basic I/O etc. All these functionalities are exposed through an application programming interface(for Java, Python, Scala, and R) called driver program. We tell the driver program what we want to do by passing a function. And it calls the Spark Core to do the low-level jobs for us.
 
-# Header 1
-## Header 2
-### Header 3
+Built on top of the Spark Core, Spark provide 4 higher-level libraries for special purpose jobs:
 
-- Bulleted
-- List
+- **Spark SQL**
+  Spark SQL provides a data abstraction called DataFrames that support both structured or semi-structured data. 
 
-1. Numbered
-2. List
+- **Spark Streaming**
+  Spark Streaming is used for steaming analysis because of the speed of computation.
 
-**Bold** and _Italic_ and `Code` text
+- **MLlib**
+  MLlib is used for machine learning jobs. Specifically, it includes following machine learning techniques and models:
+    - Statistics like correlations, stratified sampling, hypothesis testing, random data generation.
+    - Classificationa and Regression like SVM, logistic regression, linear regression, decisoon tree, naive Bayes.
+    - Collaborativbe Filtering like alternating least squares
+    - Cluster Analysis like kmeans and Latent Dirichlet Allocation
+    - Dimension Reduction like SVD and PCA
+    - Feature Extraction and Transformation
+    - Optimization like SGD, L-BFGS.
 
-[Link](url) and ![Image](src)
+- **GraphX**
+  GraphX is used for graph processing like PageRank and so on.
+
+# What is special about Spark
+All we do with data can be generalized as applying some operations on some dataset. Spark is designed in this way too.
+
+## RDD
+The special kind of datasets in Spark--**Resilient Distributed Datasets(RDDs)**--form the foundation of Spark. Basically, an RDD is a collections of tuples. What is special about RDD is that your can keep it in memories of machines by using ``persist()`` or ``cache()`` method. On addition to that, you can specify the storage level to control how it is saved. 
+
+By default, Spark saves the RDD as deserialized Java objects in memory. And if the RDD is too big, the part that doesn't fit will not be cached and will be recompute on the fly every time they are needed. (For the full set of storage levels and their details, check -> https://spark.apache.org/docs/latest/rdd-programming-guide.html#rdd-persistence)
+
+This is the key difference between Spark and Hadoop. Because as we know, Hadoop don't save any output in memory, even the intermediate key/value pairs coming out of map function are saved to local disk and being retrieved by reducer. The disk I/Os and serialization/deserialization during I/O make the process very inefficient if we need to use the same dataset from time to time. (Think about tuning models in Machine Learning.) **In contrast, the RDDs used in Spark can stay in memory thus allows up to use them iteratively and interactively over and over again without having to read them from disk. **
+
+## Operations:
+The operations to manipulate RDD in Spark are highlevel and flexible. They are high-level because it saves us from disk I/Os and provide a varity of high-level operations like JCascalog and other libraries for Hadoop. They are flexible because lots of the operations work with customed functions implemented for specific purpose by ourselves. In general, the operations are categorized into transformations and actions:
+
+- **Transformations: all the operations take in RDD and return a new RDD are considered transformations.** Below are some of them:
+
+    | Transformation | Meaning |
+    | --- | --- |
+    | map(function) | use the input function to process each row of RDD and return a new processed RDD|
+    | filter(function) | use the input function to evaluate each row of RDD and remove the rows evaluated false |
+    | union(otherDataset) | return the union of 2 data sets based on identical fields |
+    | reduceByKey(function, [numTasks]) | return a new RDD in which values of same key are aggregated |
+    | ... | ...|
+
+- **Actions: all the operations take in RDD and return something that is not RDD are considered actions.** For example:
+
+    | Actions | Meaning |
+    | --- | --- |
+    | reduce(function) | aggregate the elements of RDD using provided function|
+    | collect() | return all the elements in RDD as an array |
+    | rake(n) | return the elements of first n rows in RDD as an array |
+    | saveAsSequenceFile(path) | wite the elements of the dataset as a Hadoop SequenceFile in a given path in local filesystem |
+    | ... | ...|
+
+For more operations and details, check -> https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations
+
+On addition to these basic, one-step type of operations, Spark offers more complex operations in those 4 specific purpose libraries we talked about in last section. And these complex operations are nothing more than a combination of basic operations.
+
+# When should we use it
+As we said, the main advantage of Spark is the RDD. It's fast for iterative algorithm and interactive developing environment. And it's convinient to use those 4 specific purpose libraries if they suit our needs.
+
+# References
+Apache Spark Documentation: (https://spark.apache.org/docs/latest/index.html)
+Wikipedia: Apache Spark: (https://en.wikipedia.org/wiki/Apache_Spark)
+Apache Spark GitHub Repository: (https://github.com/apache/spark)
+
+## The Apache spark project
+More info: [The Apache Spark Project](https://spark.apache.org/)
+
+
+# Software Downloading and configuring for Mac OSX
+
+We have 2 ways to config Spark environment before starting using it. The hard way is to install Java, Scala and Spark one by one. And the easy way is to install docker and pull an existing image from the internet.
+
+# Easy way:
+## Installing Docker
+1. Download the Docker Community Edition for Mac from -> https://store.docker.com/editions/community/docker-ce-desktop-mac
+
+2. Double click it and follow the guide.
+
+3. Open a command-line terminal, and try:
+```
+$ docker version
+$ docker run hello-world
+```
+The first one check the version of docker. And the 2nd one verifies that Docker is pulling images and running as expected.
+
+## Pulling Spark image
+1. Run:
+```
+$ docker run -it -p 8888:8888 jupyter/pyspark-notebook
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+2. Take note of the authentication token and open it in a browser.
 
-### Jekyll Themes
+The image lives here -> https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/moazim1993/BigData_Spark_Tutorial/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+It includes:
+- Jupyter Notebook 5.2.x
+- Conda Python 3.x environment
+- pyspark, pandas, matplotlib, scipy, seaborn, scikit-learn
+- Spark 2.2.0 with Hadoop 2.7
+- Mesos client 1.2
+- and so on
 
-### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+# Hard way:
+## Installing Java
+1. Download Java SE(standard edition)-JDK(Java developement kit) 9.0.1 from -> http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html
+
+2. Double click it and follow the guide.
+
+## Installing Scala
+1. Download the Scala binaries for osx from -> http://www.scala-lang.org/download/
+
+2. Extract the Scala tar file:
+```$ tar xvf scala-2.12.3.tgz```
+
+3. Move the extracted Scalar software files to /usr/local/scala (admin privilege needed):
+```
+    $ su -
+    Password:
+    # mkdir /usr/local/scala
+    # cd /Users/YourUserName/Downloads
+    # mv scala-2.12.3 /usr/local/scala
+    # exit
+```
+
+4. Set path for Scala so the shell knows where to find the software when executing scala script:
+```
+    $ vim ~/.bash_profile
+    append the following export command: 
+    export PATH=$PATH:/usr/local/scala-2.12.3/bin
+    save and quit
+```
+
+5. Verify your Scala is successfully installed:
+```
+    $ source ~/.bash_profile
+    $ scala -version
+```
+If success, you should enter the scala REPL shell.
+
+## Installing Spark
+1. Download the Spark binaries for osx from -> https://spark.apache.org/downloads.html
+
+2. Extract the Spark tar file:
+```$ tar xvf spark-2.2.0-bin-hadoop2.7.tgz```
+
+3. Move the extracted Spark software files to /usr/local/spark (admin privilege needed):
+```
+    $ su -
+    Password:
+    # mkdir /usr/local/spark
+    # cd /Users/YourUserName/Downloads
+    # mv spark-2.2.0-bin-hadoop2.7 /usr/local/spark
+    # exit
+```
+
+4. Set path for Spark so the shell knows where to find the software when executing Spark script:
+```
+    $ vim ~/.bash_profile
+    append the following export command: 
+        export PATH = $PATH:/usr/local/spark/spark-2.2.0-bin-hadoop2.7/bin
+    save and quit
+```
+
+5. Verify your Spark is successfully installed:
+```
+    $ source ~/.bash_profile
+    $ spark-shell
+```
+If success, you should see a bunch of stuff and enter the spark shell in scala.
+
+### Install pyspark package
+```
+$ pip install pyspark
+```
+
+# Using Spark
+1. go to where your spark installation folder is, for example: 
+/usr/local/spark/spark-2.2.0-bin-hadoop2.7/
+
+2. Use Spark either by coding in shell or directly launching our applications with spark-submit. Either way, we are able to tell the spark which master machine we want to connect to and what the configuration of Spark we would like to use.
+
+### Coding in shell
+You can set which master the context connects to using the --master argument, and you can add Python .zip, .egg or .py files to the runtime path by passing a comma-separated list to --py-files.
+
+For example to run bin/pyspark locally on exactly four cores, run: 
+```
+$ ./bin/pyspark --master local[4] --py-files yourScript.py
+```
+
+And if we would also like to import yourScript later in the shell, run: 
+```
+$ ./bin/pyspark --master local[4] --py-files yourScript.py
+```
+
+#### Using IPython instead of Python for spark-shell
+```
+$ PYSPARK_DRIVER_PYTHON=ipython
+```
+
+#### Using Jupyter instead of Python for spark-shell
+```
+$ PYSPARK_DRIVER_PYTHON=jupyter
+```
+
+## Running Python script
+```
+$ ./bin/spark-submit \
+  --class <main-class> \
+  --master <master-url> \
+  --deploy-mode <deploy-mode> \
+  --conf <key>=<value> \
+  ... # other options
+  <application-zip> \
+  [application-arguments]
+```
+
+* --class: The entry point for your application (e.g. org.apache.spark.examples.SparkPi)
+
+* --master: The master URL for the cluster (e.g. spark://23.195.26.187:7077 or local) 
+
+* --deploy-mode: Whether to deploy your driver on the worker nodes (cluster) or locally as an external client (client) (default: client)
+
+* --conf: Arbitrary Spark configuration property in key=value format. 
+
+* application-zip: Path to a bundled zip file including your application and all dependencies. The URL must be globally visible inside of your cluster, for instance, an hdfs:// path or a file:// path that is present on all nodes.
+
+* application-arguments: Arguments passed to the main method of your main class, if any.
+
+Details refer to -> https://spark.apache.org/docs/latest/submitting-applications.html
+
+
