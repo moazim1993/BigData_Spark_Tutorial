@@ -7,7 +7,7 @@ Apache Spark was first developed in 2009 by AMPLab at UC Berkeley. It was first 
 ## Functionalities
 It is an open-source, fault-tolerent batch-computing framework similar to Hadoop. It provides us several APIs to manipulate a special kind of datasets(so-called RDD) distributed on many machines in high level and hide away the low-level details to keep operations efficient and fault-tolerent under the hood.
 
-![Spark Framework](SparkFramework.png)
+![Spark Framework]({{site.baseurl}}/https://raw.githubusercontent.com/moazim1993/BigData_Spark_Tutorial/gh-pages/SparkFramework.png)
 
 There 1 main component in Spark served as foundation:
 
@@ -69,7 +69,7 @@ The operations to manipulate RDD in Spark are highlevel and flexible. They are h
     | saveAsSequenceFile(path) | wite the elements of the dataset as a Hadoop SequenceFile in a given path in local filesystem |
     | ... | ...|
 
-For more operations and details, check -> https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations
+For more operations and details, check -> [https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations](https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations)
 
 On addition to these basic, one-step type of operations, Spark offers more complex operations in those 4 specific purpose libraries we talked about in last section. And these complex operations are nothing more than a combination of basic operations.
 
@@ -77,9 +77,9 @@ On addition to these basic, one-step type of operations, Spark offers more compl
 As we said, the main advantage of Spark is the RDD. It's fast for iterative algorithm and interactive developing environment. And it's convinient to use those 4 specific purpose libraries if they suit our needs.
 
 # References
-Apache Spark Documentation: (https://spark.apache.org/docs/latest/index.html)
-Wikipedia: Apache Spark: (https://en.wikipedia.org/wiki/Apache_Spark)
-Apache Spark GitHub Repository: (https://github.com/apache/spark)
+Apache Spark Documentation: [(https://spark.apache.org/docs/latest/index.html)](https://spark.apache.org/docs/latest/index.html)
+Wikipedia: Apache Spark: ()
+Apache Spark GitHub Repository: [(https://github.com/apache/spark)](https://github.com/apache/spark)
 
 ## The Apache spark project
 More info: [The Apache Spark Project](https://spark.apache.org/)
@@ -91,7 +91,7 @@ We have 2 ways to config Spark environment before starting using it. The hard wa
 
 # Easy way:
 ## Installing Docker
-1. Download the Docker Community Edition for Mac from -> https://store.docker.com/editions/community/docker-ce-desktop-mac
+1. Download the Docker Community Edition for Mac from -> [https://store.docker.com/editions/community/docker-ce-desktop-mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
 
 2. Double click it and follow the guide.
 
@@ -110,7 +110,7 @@ $ docker run -it -p 8888:8888 jupyter/pyspark-notebook
 
 2. Take note of the authentication token and open it in a browser.
 
-The image lives here -> https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook
+The image lives [here.]( https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook)
 
 It includes:
 - Jupyter Notebook 5.2.x
@@ -123,12 +123,12 @@ It includes:
 
 # Hard way:
 ## Installing Java
-1. Download Java SE(standard edition)-JDK(Java developement kit) 9.0.1 from -> http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html
+1. Download Java SE(standard edition)-JDK(Java developement kit) 9.0.1 from -> [http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html](http://www.oracle.com/technetwork/java/javase/downloads/jdk9-downloads-3848520.html)
 
 2. Double click it and follow the guide.
 
 ## Installing Scala
-1. Download the Scala binaries for osx from -> http://www.scala-lang.org/download/
+1. Download the Scala binaries for osx from -> [http://www.scala-lang.org/download/](http://www.scala-lang.org/download/)
 
 2. Extract the Scala tar file:
 ```$ tar xvf scala-2.12.3.tgz```
@@ -247,6 +247,4 @@ $ ./bin/spark-submit \
 
 * application-arguments: Arguments passed to the main method of your main class, if any.
 
-Details refer to -> https://spark.apache.org/docs/latest/submitting-applications.html
-
-
+For additional details, reffer to the [docs.]( https://spark.apache.org/docs/latest/submitting-applications.html)
