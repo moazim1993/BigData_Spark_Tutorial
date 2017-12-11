@@ -24,7 +24,7 @@ Batch processing using Spark might be quite expensive and will not fit for all s
 
 Apache Spark was first developed in 2009 by AMPLab at UC Berkeley as a research project. It started with the creation of Mesos (a cluster management tool) and wanting a system to be built on top of it by some of the original developers lead by Ion Stoica (UC Berkley Professor, and CEO of DataBricks). Requirements for Machine Learning on top of Hadoop was being introduced by the University, and many near-by tech companies, including Stoica’s company Conviva, had required interactive fast querying abilities. It was first released at May 30th, 2014 (only 3 years ago) and later donated to the Apache Software Foundation which has maintained it ever since.
 
-
+[Interview with Ion Stoica](http://blog.madhukaraphatak.com/history-of-spark/)
 
 ## Functionalities
 
