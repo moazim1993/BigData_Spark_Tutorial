@@ -227,6 +227,22 @@ $ pip install pyspark
 ```
 
 # Using Spark
+
+## With Docker Image
+
+1. After launching the image you should recive an output as shown below 
+
+```
+C 18:56:29.415 NotebookApp] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=2b5aef1a3975b896c7a54bf0132dd43de342659c98573a89
+ ```
+
+2. As instructed, pasting the URL should open a fully equipt jyputer notebook.
+
+## With full instalation
 1. go to where your spark installation folder is, for example: 
 /usr/local/spark/spark-2.2.0-bin-hadoop2.7/
 
