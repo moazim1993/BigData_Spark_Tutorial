@@ -237,7 +237,7 @@ C 18:56:29.415 NotebookApp]
     
     Copy/paste this URL into your browser when you connect for the first time,
     to login with a token:
-        http://localhost:8888/?token=2b5aef1a3975b896c7a54bf0132dd43de342659c98573a89
+        http://localhost:8888/?token=Ab324539896c7a54bf0132dd43de342659c98573a89
  ```
 
 2. As instructed, pasting the URL should open a fully equipt jyputer notebook.
