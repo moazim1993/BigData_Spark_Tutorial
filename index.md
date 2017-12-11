@@ -281,3 +281,16 @@ $ ./bin/spark-submit \
 * application-arguments: Arguments passed to the main method of your main class, if any.
 
 For additional details, refer to the [docs.]( https://spark.apache.org/docs/latest/submitting-applications.html)
+
+
+# Project Contributors:
+#### [Caleb Hulburt](https://github.com/cmhulbert)
+#### [Mohammad Azim](https://github.com/moazim1993)
+#### [Xian Lai](https://github.com/Xianlai)
+#### [Yao Jin](https://github.com/jinyaohh)
+
+
+Group Project for Big Data Programming, Fall 2017
+
+Project master repository: 
+[Master Branch](<https://github.com/Xianlai/BigData_Spark>)
