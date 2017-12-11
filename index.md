@@ -281,4 +281,3 @@ $ ./bin/spark-submit \
 * application-arguments: Arguments passed to the main method of your main class, if any.
 
 For additional details, refer to the [docs.]( https://spark.apache.org/docs/latest/submitting-applications.html)
-
