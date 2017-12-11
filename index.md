@@ -281,8 +281,6 @@ $ ./bin/spark-submit \
 
 For additional details, refer to the [docs.]( https://spark.apache.org/docs/latest/submitting-applications.html)
 
-# Political D
-
 
 # Project Contributors:
 #### [Caleb Hulburt](https://github.com/cmhulbert)
