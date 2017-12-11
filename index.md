@@ -242,7 +242,7 @@ C 18:56:29.415 NotebookApp]
 
 2. As instructed, pasting the URL should open a fully equipt jyputer notebook.
 
-## With full instalation
+## With full installation
 1. go to where your spark installation folder is, for example: 
 /usr/local/spark/spark-2.2.0-bin-hadoop2.7/
 
