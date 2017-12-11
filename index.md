@@ -225,7 +225,7 @@ If success, you should see a bunch of stuff and enter the spark shell in scala.
 ```
 $ pip install pyspark
 ```
-
+---
 # Using Spark
 
 ## With Docker Image
@@ -297,6 +297,7 @@ $ ./bin/spark-submit \
 
 For additional details, refer to the [docs.]( https://spark.apache.org/docs/latest/submitting-applications.html)
 
+---
 
 # Project Contributors:
 #### [Caleb Hulburt](https://github.com/cmhulbert)
