@@ -119,7 +119,6 @@ More info: [The Apache Spark Project](https://spark.apache.org/)
 # Getting Started
 
 ## Software Downloading and configuring for Mac OSX
-
 We have 2 ways to config Spark environment before starting using it. The hard way is to install Java, Scala and Spark one by one. And the easy way is to install docker and pull an existing image from the internet.
 
 ## Easy way:
@@ -281,6 +280,8 @@ $ ./bin/spark-submit \
 * application-arguments: Arguments passed to the main method of your main class, if any.
 
 For additional details, refer to the [docs.]( https://spark.apache.org/docs/latest/submitting-applications.html)
+
+# Political D
 
 
 # Project Contributors:
