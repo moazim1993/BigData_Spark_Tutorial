@@ -15,7 +15,7 @@ Batch processing using Spark might be quite expensive and will not fit for all s
 
 #### Example of a Lambda Architecture with Spark
 
-![Example Lambda Architecture]({{site.baseurl}}/https://dzone.com/storage/temp/3361824-pipeline-2.png)
+![Example Lambda Architecture]({{site.baseurl}}//pipeline-2.png)
 
 [Read More](https://dzone.com/articles/lambda-architecture-with-apache-spark)
 
