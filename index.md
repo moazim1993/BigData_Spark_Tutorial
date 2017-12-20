@@ -15,7 +15,7 @@ Batch processing using Spark might be quite expensive and will not fit for all s
 
 #### Example of a Lambda Architecture with Spark
 
-![Example Lambda Architecture]({{site.baseurl}}//pipeline-2.png)
+![Example Lambda Architecture](./images/pipeline-2.png)
 
 [Read More](https://dzone.com/articles/lambda-architecture-with-apache-spark)
 
@@ -30,7 +30,7 @@ Apache Spark was first developed in 2009 by AMPLab at UC Berkeley as a research 
 
 It is an open-source, fault-tolerant batch-computing framework like Hadoop. It provides us several APIs to manipulate a special kind of datasets called RDD (Resilient Distributed Dataset), a distributed memory abstraction that lets programmers perform in-memory computations on large clusters in a fault-tolerant manner. RDDs were motivated by the needs for iterative algorithms and interactive data mining tools. In both cases, keeping data in memory can improve performance by an order of magnitude.
 
-![Spark Framework]({{site.baseurl}}//SparkFramework.png)
+![Spark Framework](./images/SparkFramework.png)
 ---
 Spark Core is the foundational component:
 
@@ -116,7 +116,9 @@ More info: [The Apache Spark Project](https://spark.apache.org/)
 
 ---
 
-# Getting Started
+# Installation
+
+Instructions provided in full [here] (./installation)
 
 ## Software Downloading and configuring for Mac OSX
 We have 2 ways to config Spark environment before starting using it. The hard way is to install Java, Scala and Spark one by one. And the easy way is to install docker and pull an existing image from the internet.
