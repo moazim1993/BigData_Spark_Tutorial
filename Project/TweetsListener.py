@@ -14,10 +14,10 @@ tracks = ['maga', 'resist'] # The topics of tweets to receive
 host   = "172.17.0.2"       # the IP address of local host
 
 
-consumer_key    = "GfUirs5Qb88kcqI67AyIbcCix"
-consumer_secret = "8YJ64NwbywQVAxcYpcHGrmlk9Ahkb5Plv1TOSmdWnjm5poLN4H"
-access_token    = "595598668-i0vBACxNaQtzMlUM7sOhLw2vboynfgwzLjAElJX8"
-access_secret   = "gzV7S4PjD3YBTktgjdBgs9oe5c7a5iaPHN4sl12d1jRAD"
+consumer_key    = None
+consumer_secret = None
+access_token    = None
+access_secret   = None
 
 class Listener(StreamListener):
 
