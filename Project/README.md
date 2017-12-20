@@ -24,7 +24,7 @@ s.listen(5)             # Now wait for client connection.
 c, addr = s.accept()    # Establish connection with client.
 sendData( c,['maga', 'resist'] ) #Function to send data
 ```
-We use Streaming Context API socketTextStream to receive tweet Streaming through port and transfer into Dstreaming, which is the Streaming of RDD
+We use Streaming Context API socketTextStream to receive tweet Streaming through port and transfer into DStream, which is the Streaming of RDD
 ```python
 raw_tweets = ssc.socketTextStream('localhost',5555)
 ```
