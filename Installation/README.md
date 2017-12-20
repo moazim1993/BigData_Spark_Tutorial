@@ -27,6 +27,8 @@ $ docker run -it -p 8888:8888 xianlai/spark_project
 The image is built based on the image lives [here.]( https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook)
 
 It includes:
+- tweepy
+- Bokeh
 - Jupyter Notebook 5.2.x
 - Conda Python 3.x environment
 - pyspark, pandas, matplotlib, scipy, seaborn, scikit-learn
