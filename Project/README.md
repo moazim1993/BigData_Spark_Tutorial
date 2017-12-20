@@ -1,41 +1,49 @@
 # Run the code with Docker container
-If you want to run the Jupyter notebooks using Docker container, you can download this repository onto your local machine. And run `$docker run -it -v yourPathToDownloadedFolder:/home/jovyan -p 8888:8888 xianlai/spark_project`. Then it will map the folder onto the container and you can access the files inside container.
+If you want to run the Jupyter notebooks using Docker container, you can download this repository onto your local machine. And run `$docker run -it -v /your/Path/To/Downloaded/Folder:/home/jovyan -p 8888:8888 xianlai/spark_project`. Then it will map the folder onto the container and you can access the files inside container.
 
 # Project Outline
 
-## Create a Twitter Stream and send tweets to Spark
-Firstly we use tweepy API to pull tweets streams regard tracks #MAGA and #resist. Then the stream is directed into Spark Streaming through the TCP socket.
+The main project file is contained in the ipython notebook [Tweets_analysis_SparkStreaming.ipynb](./Tweets_analysis_SparkStreaming.ipynb)
 
-We set up the Spark context in local mode with 3 CPU's running simulating 3 different machines. And build a Spark streaming context based on Spark context and set the time interval to 5 seconds. So the incoming tweets will be collect into 1 RDD every 5 seconds.
+In order to receive Tweets, you will need to add your own Twitter API keys in the [TweetsListener.py](./TweetsListener.py) file. The variables that need to be set are are the top and are as follows:
+```python
+consumer_key    = None  # Replace with your Consumer key
+consumer_secret = None  # Replace with your Consumer secret
+access_token    = None  # Replace with your acces token
+access_secret   = None  # Replace with your access secret
+```
+
+## Startup, Twitter Stream, and Send Tweets to Spark
+Firstly we use Tweepy API to pull tweets streams containg the words 'MAGA' or 'resist'. 
+
+We built a module called TweetRead.py containing a class to pull tweets streaming from Twitter containging the words 'MAGA' or 'resist' by using the Tweepy API. Then the stream is directed into Spark Streaming through a TCP socket.
+```python
+host = "172.17.0.2"     # Get local machine name
+port = 5555             # Reserve a port for your service.
+s = socket.socket()     # Create a socket object
+s.bind((host, port))    # Bind to the port
+s.listen(5)             # Now wait for client connection.
+c, addr = s.accept()    # Establish connection with client.
+sendData( c,['maga', 'resist'] )    #Function to start receiving data from Twitter, and send them to Spark
+```
+
+We set up the Spark context in local mode with 3 thread's allowing up to 3 simultaneous processes. The Spark streaming context is initialized based on Spark context and set the update time interval to 5 seconds. Thus, incoming tweets will be added to a DStream every 5 seconds.
 ```python
 conf = SparkConf().setMaster('local[3]')
 sc   = SparkContext(conf=conf)
 ssc  = StreamingContext(sc, 5)
 ```
 
-We build an app called TweetRead.py to pull tweet streaming from Twitter by using library called Tweepy and use socket to send streaming into Spark Streaming
-
-```python
-host = "localhost"      # Get local machine name
-port = 5555             # Reserve a port for your service.
-s = socket.socket()     # Create a socket object
-s.bind((host, port))    # Bind to the port
-s.listen(5)             # Now wait for client connection.
-c, addr = s.accept()    # Establish connection with client.
-sendData( c,['maga', 'resist'] ) #Function to send data
-```
-We use Streaming Context API socketTextStream to receive tweet Streaming through port and transfer into DStream, which is the Streaming of RDD
+On the Spark side we use the Streaming Context method `socketTextStream` to receive tweet Streaming through the previously initialized socket, and transfer into DStream.
 ```python
 raw_tweets = ssc.socketTextStream('localhost',5555)
 ```
 
 ## Clean Tweets
 
-The tweets come in as a DStream object, which can be thought of as a list of strings, each one corresponding to a single tweet.
-```python
-raw_tweets = ssc.socketTextStream('172.17.0.2',5555)
-```
-Next, the `raw_tweets` are written out to a log file to be accessed for any future analysis.
+`raw_tweets`, from above, cna be though of as a list of strings, each one corresponding to a single tweet.
+
+First, the `raw_tweets` are written out to a log file to be accessed for any future analysis.
 ```python
 def writeRDD(rdd):
     global logs
@@ -45,7 +53,7 @@ def writeRDD(rdd):
 raw_tweets.foreachRDD(writeRDD)
 ```
 
-The following line pre-processes the incoming tweets by applying an operation to each RDD in the DStream:
+Then, we pre-processes the incoming tweets by applying an operation to each RDD in the DStream:
 1. Split the string by whitespace
 ```
 clean_tweets = raw_tweets\
