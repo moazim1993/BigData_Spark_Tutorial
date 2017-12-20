@@ -106,6 +106,8 @@ The operations to manipulate RDD in Spark are high level and flexible. It is hig
 
 For more operations and details, check -> [https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations](https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations)
 
+Working under this framework, Spark will be able to understand your opearations and optimize them as a pipeline what they called "lineage" and when some slave machines go down, it will fetch the original RDD and apply the lineage to recover the results.
+
 On addition to these basic, one-step type of operations, Spark offers more complex operations in those 4 specific purpose libraries we talked about in last section. And these complex operations are nothing more than a combination of basic operations.
 
 # When should we use it
