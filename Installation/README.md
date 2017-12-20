@@ -24,7 +24,7 @@ $ docker run -it -p 8888:8888 xianlai/spark_project
 
 2. Take note of the authentication token and open it in a browser.
 
-The image lives [here.]( https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook)
+The image is built based on the image lives [here.]( https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook)
 
 It includes:
 - Jupyter Notebook 5.2.x
