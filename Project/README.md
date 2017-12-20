@@ -1,6 +1,8 @@
 # Project Outline
 
 ## Create a Twitter Stream and send tweets to Spark
+Firstly we use tweepy API to pull tweets streams regard tracks #MAGA and #resist. Then the stream is directed into Spark Streaming through the TCP socket.
+
 We set up the Spark context in local mode with 3 CPU's running simulating 3 different machines. And build a Spark streaming context based on Spark context and set the time interval to 5 seconds. So the incoming tweets will be collect into 1 RDD every 5 seconds.
 ```python
 conf = SparkConf().setMaster('local[3]')
