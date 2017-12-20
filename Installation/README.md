@@ -114,7 +114,7 @@ $ pip install pyspark
 
 ## With Docker Image
 
-1. After launching the image you should recive an output as shown below 
+1. After launching the image by running `$docker run -it -p 8888:8888 xianlai/spark_project`, you should receive an output as shown below 
 
 ```
 C 18:56:29.415 NotebookApp] 
