@@ -4,6 +4,8 @@ If you want to run the Jupyter notebooks using Docker container, you can downloa
 # Project Outline
 
 ## Create a Twitter Stream and send tweets to Spark
+Firstly we use tweepy API to pull tweets streams regard tracks #MAGA and #resist. Then the stream is directed into Spark Streaming through the TCP socket.
+
 We set up the Spark context in local mode with 3 CPU's running simulating 3 different machines. And build a Spark streaming context based on Spark context and set the time interval to 5 seconds. So the incoming tweets will be collect into 1 RDD every 5 seconds.
 ```python
 conf = SparkConf().setMaster('local[3]')
@@ -20,6 +22,7 @@ s = socket.socket()     # Create a socket object
 s.bind((host, port))    # Bind to the port
 s.listen(5)             # Now wait for client connection.
 c, addr = s.accept()    # Establish connection with client.
+sendData( c,['maga', 'resist'] ) #Function to send data
 ```
 We use Streaming Context API socketTextStream to receive tweet Streaming through port and transfer into Dstreaming, which is the Streaming of RDD
 ```python
