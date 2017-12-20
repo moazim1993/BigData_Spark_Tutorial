@@ -6,7 +6,7 @@ We set up the Spark context in local mode with 3 CPU's running simulating 3 diff
 conf = SparkConf().setMaster('local[3]')
 sc   = SparkContext(conf=conf)
 ssc  = StreamingContext(sc, 5)
-'''
+```
 
 We build an app called TweetRead.py to pull tweet streaming from Twitter by using library called Tweepy and use socket to send streaming into Spark Streaming
 
