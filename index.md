@@ -397,11 +397,10 @@ def calculate_informativeness(cps):
 ```
 This function returned the max value, when dividing each conditional probability by the other. 
 
-
 ## Visualization
 
 The TweetsStreamingPlot.py file defines the streaming plotting class. We will import this file and use it to initialize an object called `plot` and make streaming plot with method `plot.start(data)`. It will take the data input as a new column data source and push the updated plotting onto the Jupyter notebook.
-![streaming_plot](../images/streaming_plot.png)
+(..![streaming plot]({{site.baseurl}}//images/streaming_plot.png))
 
 ---
 
