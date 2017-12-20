@@ -12,11 +12,11 @@ We build an app called TweetRead.py to pull tweet streaming from Twitter by usin
 
 ```python
 host = "localhost"      # Get local machine name
-port = 5555           # Reserve a port for your service.
-s = socket.socket()      # Create a socket object
-s.bind((host, port))        # Bind to the port
-s.listen(5)                 # Now wait for client connection.
-c, addr = s.accept()        # Establish connection with client.
+port = 5555             # Reserve a port for your service.
+s = socket.socket()     # Create a socket object
+s.bind((host, port))    # Bind to the port
+s.listen(5)             # Now wait for client connection.
+c, addr = s.accept()    # Establish connection with client.
 ```
 We use Streaming Context API socketTextStream to receive tweet Streaming through port and transfer into Dstreaming, which is the Streaming of RDD
 ```python
