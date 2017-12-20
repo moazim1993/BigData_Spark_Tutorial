@@ -117,8 +117,8 @@ More info: [The Apache Spark Project](https://spark.apache.org/)
 ---
 
 # Installation
-
-Instructions provided in full [here] (./installation)
+[Installation Guide](https://github.com/moazim1993/BigData_Spark_Tutorial/tree/gh-pages/Installation)
+Instructions provided in full 
 
 ---
 
