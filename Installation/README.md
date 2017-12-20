@@ -19,7 +19,7 @@ The first one check the version of docker. And the 2nd one verifies that Docker 
 ### Pulling Spark image
 1. Run:
 ```
-$ docker run -it -p 8888:8888 jupyter/pyspark-notebook
+$ docker run -it -p 8888:8888 xianlai/spark_project
 ```
 
 2. Take note of the authentication token and open it in a browser.
@@ -135,12 +135,12 @@ You can set which master the context connects to using the --master argument, an
 
 For example to run bin/pyspark locally on exactly four cores, run: 
 ```
-$ ./bin/pyspark --master local[4] --py-files yourScript.py
+$ ./bin/pyspark --master local[4]
 ```
 
 And if we would also like to import yourScript later in the shell, run: 
 ```
-$ ./bin/pyspark --master local[4] --py-files yourScript.py
+$ ./bin/pyspark --master local[4] --py-files yourScript1.py, yourScript2.py
 ```
 
 ##### Using IPython instead of Python for spark-shell
